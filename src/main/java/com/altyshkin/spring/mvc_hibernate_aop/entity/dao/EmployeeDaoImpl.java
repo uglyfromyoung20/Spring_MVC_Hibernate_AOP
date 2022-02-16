@@ -13,7 +13,7 @@ public class EmployeeDaoImpl implements  EmployeeDao{
     @Autowired
 private SessionFactory sessionFactory;
     @Override
-    @Transactional // принг берет на себя ответственность на открытие и закрытие транзакции
+
     public List<Employee> getAllEmployee() {
     Session session = sessionFactory.getCurrentSession();
 
