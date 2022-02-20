@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.altyshkin.spring.mvc_hibernate_aop.entity.service.EmployeeService;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -27,9 +28,15 @@ return "all-employees";
         return  "employee-info";
 
     }
-@RequestMapping("saveEmployee")
+@RequestMapping("/saveEmployee")
     public String saveEmployee(@ModelAttribute("employee")Employee employee){
     employeeService.saveEmployee(employee);
         return "redirect:/";
+    }
+    @RequestMapping("/updateInfo")
+    public String updateEmployee(@RequestParam("empId") int id, Model model){
+Employee employee = employeeService.getEmployee(id);
+        model.addAttribute("employee" ,employee);
+        return  "employee-info";
     }
 }
